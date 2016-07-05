@@ -19,12 +19,7 @@ class RegistrationTest < Test::Unit::TestCase
 
   def test_change_password
     registration
-    @browser.find_element(:css, '.icon.icon-passwd').click
-    @browser.find_element(:id, 'password').send_keys @password
-    new_pass='qwerty'
-    @browser.find_element(:id, 'new_password').send_keys new_pass
-    @browser.find_element(:id, 'new_password_confirmation').send_keys new_pass
-    @browser.find_element(:name, 'commit').click
+    change_password
 
     success_text = 'Password was successfully updated.'
     actual_text = @browser.find_element(:id, 'flash_notice').text
@@ -42,10 +37,7 @@ class RegistrationTest < Test::Unit::TestCase
   def test_create_project_versions
     registration
     create_project
-    @browser.find_element(:id, 'tab-versions').click
-    @browser.find_element(:css, '#tab-content-versions .icon.icon-add').click
-    @browser.find_element(:id, 'version_name').send_keys 'mp'
-    @browser.find_element(:name, 'commit').click
+    create_project_version
     success_text = 'Successful creation.'
     actual_text = @browser.find_element(:id, 'flash_notice').text
     assert_equal(success_text, actual_text)

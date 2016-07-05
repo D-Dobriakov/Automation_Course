@@ -30,21 +30,30 @@ module OurModule
 
     def create_issue (issue)
 
-      if issue == 'bug'
-        option_value = '1'
-      elsif issue == 'feature'
-        option_value = '2'
-      elsif issue == 'support'
-        option_value = '3'
-      end
-
       @browser.find_element(:class, 'new-issue').click
 
       issue_type_dropdown = @browser.find_element(:id, 'issue_tracker_id')
       option = Selenium::WebDriver::Support::Select.new(issue_type_dropdown)
-      option.select_by(:value, option_value)
+      option.select_by(:text, issue.to_s.capitalize)
       @browser.find_element(:id, 'issue_subject').send_keys 'qwerty'
       @browser.find_element(:name, 'commit').click
     end
   end
+end
+
+
+def change_password
+  @browser.find_element(:css, '.icon.icon-passwd').click
+  @browser.find_element(:id, 'password').send_keys @password
+  new_pass='qwerty'
+  @browser.find_element(:id, 'new_password').send_keys new_pass
+  @browser.find_element(:id, 'new_password_confirmation').send_keys new_pass
+  @browser.find_element(:name, 'commit').click
+end
+
+def create_project_version
+  @browser.find_element(:id, 'tab-versions').click
+  @browser.find_element(:css, '#tab-content-versions .icon.icon-add').click
+  @browser.find_element(:id, 'version_name').send_keys 'mp'
+  @browser.find_element(:name, 'commit').click
 end

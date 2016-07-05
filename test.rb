@@ -11,16 +11,14 @@ class RegistrationTest < Test::Unit::TestCase
   end
 
 
-
-  def test_create_project
+  def test_create_project_versions
     registration
     create_project
+    create_project_version
     success_text = 'Successful creation.'
     actual_text = @browser.find_element(:id, 'flash_notice').text
     assert_equal(success_text, actual_text)
   end
-
-
 
 
 
