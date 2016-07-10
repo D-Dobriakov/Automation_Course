@@ -1,2 +1,4 @@
 merge conflict file with new text
 text for merge_task branch 
+third attempt to check conflict
+
