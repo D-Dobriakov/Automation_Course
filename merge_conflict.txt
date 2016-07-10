@@ -1,1 +1,1 @@
-merge conflict file 
+merge conflict file with new text
